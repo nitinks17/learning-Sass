@@ -1,0 +1,158 @@
+Defination
+Sass-Syntacticaly Awesome  Style Sheet,and its an extension to CSS,using sass we it become easy for us to write css because
+it provides some features,like like variables, nesting,mixins etc 
+Browser wont understand sass,it will beconverted to css
+
+Why you need it
+1)it helps developer to reduce repeatation of code
+2)helps us to organise largestyle sheet
+
+fetaures
+1)write less do more
+
+difference between sass and scss
+1)sass supports 2 different types of sytax
+1)indented .sass extension
+2)scss(.scss extension)---->scss is basicaly syntax style,the way we write sass,looks very similar to css,so we will be preferring by writing scss 
+
+
+Installation
+1)open vs code
+2)open extension
+3)install live sass compiler from extrension(because sass should be converted to css)
+
+STEPS
+1)create filename.scss
+2)right bottom click on watch sass(it will convert all scss to css)
+3)to connect we must link css file which is created in html ref="stylesheet" <link href="filename.css"/>
+4)write code in filename.scss
+5)now you can write code
+
+
+TOPICS
+1)variables-for storing any data related to styling like bgcolor,color,fontsize etc,starts with $
+
+ex
+$bg-color:red;
+$text-color:blue;
+body{
+background-color:$bg-color;
+}
+
+h1{
+color:$text-color;
+}
+
+
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+$fontsize-lg:50px;
+$fontsize-sm:25px;
+
+@media only screen and (max-width:600px){
+h1{
+font-size:$fontsize-lg
+}
+
+2)NESTING--//basically to write one element family
+ex:
+if theres a container and inside container there is h1
+.container{
+background-color:red;
+h1{
+font-size:78px;
+}
+}
+}
+..............................
+map-similar like variables,but her we can store multiple values,and there will be key assigned to it
+$font-size:("mobile":16px,"tablet":25px,"desktop":30px)
+
+h1{
+font-size:Lmpa-get($map:$font-size,$key:"tablet);
+}
+
+
+.......................................
+5)AMPERSAND & target parent
+ex:you are hovering over anchor tag
+nav{
+a{
+text-decoration:none;
+&:hover{
+color:red;
+}
+}
+}
+//& is child targeting its parent thats anchor tag
+
+6)MIXINS-Most and best useful feture,in layman terms its acts like function,if you design a layout ,many times
+you are using similar proprties repeatedly,so if u these cases write it in mixins and use that mixin as single line of code
+
+ex:
+
+flex property
+@mixin flexbox{
+display:flex;
+flex-direction:row;
+justify-content:space around;
+align-items:center;
+}
+
+so if you are using this above property repeatedly
+
+how to include
+@include flexbox;
+
+bt what if you want to use space-betweent then
+@mixin flexbox($fd,$jc){
+display:flex;
+flex-direction:$fd;
+justify-content:$jc;
+align-items:center;
+}
+
+how to include
+@include flexbox(column,space-evenly);
+
+you can give default
+
+@mixin flexbox($fd,$jc,$ai:center){
+display:flex;
+flex-direction:$fd;
+justify-content:$jc;
+align-items:$ai;
+}
+//even if you didnt pass 3rd paramter,it will take center default
+how to include
+@include flexbox(column,space-evenly);
+
+
+//used mainly in flex or button etc
+..............................................
+7)extend-i can inherit some css 
+.button{
+color:white;
+padding:20px;
+}
+
+button{
+@extend .button
+}
+
+............................................
+8)partials-_common.scss
+if i have many .scss files like 
+about.scss
+product.scss
+list.scss
+if you have common code which is to be similar in all 3 files,so if u have any code similar in files then put in _common.scss(underscore represtns partial)
+and if you want to import in about.scss
+then import "_common"
+
+.................note
+if accidently delete .css files,then you can recover by clicking on right bottom by restarting watching SASS
+**if you want your .css files to be in separate folder
+stop live sass compiler(right bottom)
+*go to file-prefernces-settings-extension tab--find live sass compiler-scroll down-find format section-xyz save location-cclick onedit,,replace null to "CSS"
+So hence forth all .css file which are generated aftercompiling will be in CSS FOLDER
+
